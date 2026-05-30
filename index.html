@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informasi Kelulusan SMPN 185 Jakarta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variabel Warna Canva-Like & Modern Pastel */
+        :root {
+            --bg-body: #f8fafc;
+            --bg-container: rgba(255, 255, 255, 0.85);
+            --text-main: #334155;
+            --text-muted: #64748b;
+            --text-heading: #1e3a8a;
+            --text-sub: #475569;
+            --border-color: #e2e8f0;
+            --input-border: #cbd5e1;
+            --input-focus: #3b82f6;
+            --btn-bg: #2563eb;
+            --btn-hover: #1d4ed8;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            --card-lulus: #f0fdf4;
+            --border-lulus: #bbf7d0;
+            --text-lulus: #166534;
+            --card-notfound: #fffbeb;
+            --border-notfound: #fef3c7;
+            --text-notfound: #92400e;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-container: rgba(30, 41, 59, 0.7);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-heading: #60a5fa;
+            --text-sub: #cbd5e1;
+            --border-color: #334155;
+            --input-border: #475569;
+            --input-focus: #60a5fa;
+            --btn-bg: #3b82f6;
+            --btn-hover: #2563eb;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            --card-lulus: rgba(22, 101, 52, 0.2);
+            --border-lulus: #166534;
+            --text-lulus: #4ade80;
+            --card-notfound: rgba(146, 64, 14, 0.2);
+            --border-notfound: #92400e;
+            --text-notfound: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Glassmorphism Container */
+        .container {
+            width: 100%;
+            max-width: 550px;
+            background: var(--bg-container);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 40px 30px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Modern Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+        }
+        .theme-toggle:hover {
+            background: var(--border-color);
+            transform: scale(1.05);
+        }
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Target Theme Icon Visibility */
+        .theme-toggle .sun-icon { display: block; }
+        .theme-toggle .moon-icon { display: none; }
+        [data-theme="dark"] .theme-toggle .sun-icon { display: none; }
+        [data-theme="dark"] .theme-toggle .moon-icon { display: block; }
+
+        .header .logo-container {
+            display: block;
+            margin-bottom: 16px;
+        }
+        .header img {
+            max-width: 90px;
+            height: auto;
+            object-fit: contain;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+        .header h2 {
+            font-size: 15px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 25px 0;
+        }
+
+        /* Timer Section */
+        #countdown-section p {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .timer-display {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        .timer-box {
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            padding: 12px 10px;
+            border-radius: 16px;
+            min-width: 75px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .timer-box span {
+            display: block;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--btn-bg);
+            line-height: 1.2;
+        }
+        .timer-box label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Main Form Section */
+        #main-content { display: none; }
+        .form-group { margin-bottom: 16px; }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--input-border);
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 500;
+            background: var(--bg-body); 
+            color: var(--text-main);
+            text-align: center;
+            outline: none;
+        }
+        input[type="text"]:focus {
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+        
+        .search-btn {
+            background-color: var(--btn-bg);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+        .search-btn:hover {
+            background-color: var(--btn-hover);
+            transform: translateY(-1px);
+        }
+        .search-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Result Box Customization */
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            display: none;
+            text-align: left;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .result-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .result-box p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .lulus {
+            background-color: var(--card-lulus);
+            color: var(--text-lulus);
+            border: 1px solid var(--border-lulus);
+        }
+        .not-found {
+            background-color: var(--card-notfound);
+            color: var(--text-notfound);
+            border: 1px solid var(--border-notfound);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Ubah Tema">
+        <svg class="sun-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </button>
+
+    <div class="header">
+        <div class="logo-container">
+            <img src="https://i.ibb.co.com/6RkTk6g5/IMG-20260530-225042-removebg-preview.png" alt="Logo SMPN 185 Jakarta">
+        </div>
+        <h1>SMP NEGERI 185 JAKARTA</h1>
+        <h2 id="page-subtitle">Pengumuman Kelulusan Siswa Kelas IX Tahun 2026</h2>
+    </div>
+
+    <hr>
+
+    <div id="countdown-section">
+        <p>Mohon bersabar, pengumuman kelulusan akan dibuka dalam:</p>
+        <div class="timer-display">
+            <div class="timer-box"><span id="hari">00</span><label>Hari</label></div>
+            <div class="timer-box"><span id="jam">00</span><label>Jam</label></div>
+            <div class="timer-box"><span id="menit">00</span><label>Menit</label></div>
+            <div class="timer-box"><span id="detik">00</span><label>Detik</label></div>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted);" id="target-date-text"></p>
+    </div>
+
+    <div id="main-content">
+        <div class="form-group">
+            <input type="text" id="nisnInput" placeholder="Masukkan 10 Digit NISN Siswa" autocomplete="off">
+        </div>
+        <button class="search-btn" onclick="cekKelulusan()">Cek Status Kelulusan</button>
+        <div id="result" class="result-box"></div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 SMPN 185 Jakarta</p>
+    </div>
+</div>
+
+<script>
+    // 1. JADWAL RILIS RESMI
+    const waktuBuka = new Date("June 2, 2026 10:00:00").getTime();
+    document.getElementById("target-date-text").innerText = "Jadwal rilis: " + new Date(waktuBuka).toLocaleString('id-ID', {dateStyle: 'long', timeStyle: 'short'}) + " WIB";
+
+    // 2. DATA UTAMA KELULUSAN SISWA (BARU - TOTAL 177 SISWA)
+    const dataSiswa = {
+        "0119837935": { nama: "AKHTAR FAADHIL", status: "LULUS" },
+        "0107337535": { nama: "AL FATIH GALIH RADYTIA", status: "LULUS" },
+        "0099408803": { nama: "AMANDAH MEILONI", status: "LULUS" },
+        "0116474885": { nama: "ARSYA NUH ALAMSYAH", status: "LULUS" },
+        "0102536090": { nama: "ASIAH KUMALA ARDHANARESWARI", status: "LULUS" },
+        "0113241472": { nama: "AUDI ASYAKIRA", status: "LULUS" },
+        "0101102046": { nama: "CHAIRUNISAH", status: "LULUS" },
+        "0107083532": { nama: "CHARLA REISYA WIJAYA", status: "LULUS" },
+        "0106522594": { nama: "DIMAS PUTRA MAHESA", status: "LULUS" },
+        "0105726610": { nama: "EKA ALVIDIYANSYAH", status: "LULUS" },
+        "0101841199": { nama: "FARIZ", status: "LULUS" },
+        "0119627902": { nama: "FATHIR AL-MALIK", status: "LULUS" },
+        "3106692066": { nama: "HARI SEPTIAWAN", status: "LULUS" },
+        "0101696220": { nama: "KINARU IZZATUNNISA", status: "LULUS" },
+        "0088380321": { nama: "MUHAMAD DAVI PRATAMA", status: "LULUS" },
+        "0102629382": { nama: "MUHAMAD OCTA ARYANSYAH", status: "LULUS" },
+        "0106845417": { nama: "MUHAMMAD AZAMI", status: "LULUS" },
+        "0101482315": { nama: "MUHAMMAD FARREL AL AZZA", status: "LULUS" },
+        "0091683029": { nama: "MUHAMMAD KHOLID", status: "LULUS" },
+        "0103004988": { nama: "NADYA HANI NUR ISNAINI", status: "LULUS" },
+        "0106101359": { nama: "NAPILA AUREL SEPTIANI", status: "LULUS" },
+        "3100454973": { nama: "NAYLA SHAFIRA", status: "LULUS" },
+        "0097054212": { nama: "RADIANSYAH", status: "LULUS" },
+        "0104544317": { nama: "RAFA ALLAM AL-FAWWAZ", status: "LULUS" },
+        "0109479642": { nama: "RAIHAN MUZAKKI ESYAM", status: "LULUS" },
+        "0116902732": { nama: "REVA SALSABILA PUTRI", status: "LULUS" },
+        "0108977869": { nama: "REVIANSYAH", status: "LULUS" },
+        "0113377324": { nama: "REYNER RITCHIE RAHMANSYAH", status: "LULUS" },
+        "0103665409": { nama: "SABRINA ALQURAINI", status: "LULUS" },
+        "0098502844": { nama: "SALMAN AL FARISI", status: "LULUS" },
+        "0114209662": { nama: "SALSABILLA", status: "LULUS" },
+        "0106059775": { nama: "SATRIA AWAL RAMADHAN", status: "LULUS" },
+        "0104411682": { nama: "SYIFA AULIA FITRI", status: "LULUS" },
+        "0112307757": { nama: "VANISYA GUSTRIANA PUTRI", status: "LULUS" },
+        "0113671644": { nama: "VERLYTA AURELLIA", status: "LULUS" },
+        "0102170315": { nama: "WILDAH AZKIA", status: "LULUS" },
+        "0108799491": { nama: "AIRA HUSNA", status: "LULUS" },
+        "0108925741": { nama: "AISYAH SEKAR ARUM", status: "LULUS" },
+        "0116671363": { nama: "AKBAR FAUZAN", status: "LULUS" },
+        "0092709604": { nama: "ALOYSIUS SEBASTIAN NOEL", status: "LULUS" },
+        "0103893475": { nama: "CAHAYA PERMATA KASIH", status: "LULUS" },
+        "0104959653": { nama: "EKA ANANDA NURAINA", status: "LULUS" },
+        "0115719564": { nama: "ELLZA INDAH KANAYA", status: "LULUS" },
+        "0106524434": { nama: "FAIRUL NAZRIL", status: "LULUS" },
+        "0108628332": { nama: "FAKHRI AZKA", status: "LULUS" },
+        "0108023986": { nama: "FARZAL RAFII ATHALLAH", status: "LULUS" },
+        "0106296284": { nama: "FATIMAH MALIKHA BILQIS", status: "LULUS" },
+        "0119323985": { nama: "FEBRIANSYAH PAMUNGKAS", status: "LULUS" },
+        "0106296284": { nama: "FATIMAH MALIKHA BILQIS", status: "LULUS" },
+        "0119323985": { nama: "FEBRIANSYAH PAMUNGKAS", status: "LULUS" },
+        "0106144573": { nama: "FREYA ANGELINA WAHYUDI", status: "LULUS" },
+        "0112395453": { nama: "HERMAN SETIAWAN", status: "LULUS" },
+        "0113471105": { nama: "HILAL NATHO ALMAWI", status: "LULUS" },
+        "0102392990": { nama: "KAREEM BENZEMA", status: "LULUS" },
+        "0103156793": { nama: "KHANSA NASRULLOH", status: "LULUS" },
+        "0109845367": { nama: "M. FAJARULLOH", status: "LULUS" },
+        "0108112539": { nama: "MUHAMAD KAHFI", status: "LULUS" },
+        "0101565857": { nama: "MUHAMMAD ALWANSYAH", status: "LULUS" },
+        "0104104886": { nama: "MUHAMMAD ATHAR RAFFASYA", status: "LULUS" },
+        "0103039591": { nama: "MUHAMMAD RAIHAN CHOIRIE", status: "LULUS" },
+        "0117376651": { nama: "MUHAMMAD SYAFIQ FAIRUZ", status: "LULUS" },
+        "0108625331": { nama: "NATASYA NOVIANTY PRATIWI", status: "LULUS" },
+        "0107420439": { nama: "NAZWA MUKHBITA RAMADHANI", status: "LULUS" },
+        "0102101624": { nama: "NUR AINI SHAFA ARFIANI", status: "LULUS" },
+        "0093045924": { nama: "RAMA SATRIO ZULMI", status: "LULUS" },
+        "0104672825": { nama: "RIVA VUTRA WINATA", status: "LULUS" },
+        "3101937961": { nama: "RIZKY PRATAMA KUSUMA", status: "LULUS" },
+        "0102076327": { nama: "SHELA KADZIYAH AULIA", status: "LULUS" },
+        "0106988355": { nama: "SITI NAKHLA TAUFIKA", status: "LULUS" },
+        "0119756351": { nama: "SYIFA ZAHIRAH ARIFIN", status: "LULUS" },
+        "0105321403": { nama: "TOMI KURNIAWAN", status: "LULUS" },
+        "0101085026": { nama: "VIVI RAMDANIATI", status: "LULUS" },
+        "0116654824": { nama: "ZAKIYA PUTRI SYAHRANI", status: "LULUS" },
+        "0112706273": { nama: "ADE PUTRI HARIYANI", status: "LULUS" },
+        "0107094616": { nama: "AGISHA PUTRI HARDIANTI", status: "LULUS" },
+        "0103878020": { nama: "AHMAD GALUH PRASETIO", status: "LULUS" },
+        "0109009318": { nama: "AKMAL MAULANA", status: "LULUS" },
+        "0103389145": { nama: "AULA FADILAHTUN NI'MAH", status: "LULUS" },
+        "0109973364": { nama: "CHIKO FAJRIKU", status: "LULUS" },
+        "3107052694": { nama: "DAFFA NURFADHIL REZKA", status: "LULUS" },
+        "0102497783": { nama: "EXGA JAYA KUSUMA", status: "LULUS" },
+        "0107545689": { nama: "FINA NAILATUL LIZA", status: "LULUS" },
+        "0102566099": { nama: "KANZANIA HERMAWAN", status: "LULUS" },
+        "0108351393": { nama: "KIKEN SETIAWAN", status: "LULUS" },
+        "0101894598": { nama: "MA'RIFATUL ANJAWI", status: "LULUS" },
+        "0106564056": { nama: "MOCH. FADHIL INSANI", status: "LULUS" },
+        "0105465476": { nama: "MUHAMAD ILHAM RAMADHAN", status: "LULUS" },
+        "0101135234": { nama: "MUHAMMAD AL-KAHFI", status: "LULUS" },
+        "0113172195": { nama: "MUHAMMAD FATIR", status: "LULUS" },
+        "0103341964": { nama: "MUHAMMAD RASYA ADHI SAPUTRA", status: "LULUS" },
+        "0108296704": { nama: "MUHAMMAD RASYID RIZQI", status: "LULUS" },
+        "0108162482": { nama: "NABILA OCTA AWALIA ZAHRA", status: "LULUS" },
+        "0107474908": { nama: "NAJLA AFRIZAL", status: "LULUS" },
+        "0103292606": { nama: "OCTA MUHAIMIN", status: "LULUS" },
+        "0103418144": { nama: "RAFA ALBIYANSAH", status: "LULUS" },
+        "0103603941": { nama: "RAFFI ABIYU SHARIM", status: "LULUS" },
+        "0109581632": { nama: "RAIHAN OKTA HARDIANSYAH", status: "LULUS" },
+        "0106911726": { nama: "RIF'AN FEBRYANTORO", status: "LULUS" },
+        "0107114253": { nama: "RIZKY ALFATIH", status: "LULUS" },
+        "0101436950": { nama: "ROMIZAH RAMADHANNIA", status: "LULUS" },
+        "0101532571": { nama: "SATRIA ADI KUSMANTO", status: "LULUS" },
+        "0105971047": { nama: "SITI ANA ZULFANA", status: "LULUS" },
+        "0107893125": { nama: "SYIFA NABILA", status: "LULUS" },
+        "0108313378": { nama: "THITANIA DINDA KIRANA", status: "LULUS" },
+        "0108003865": { nama: "TRI NOVIYANA", status: "LULUS" },
+        "3105427091": { nama: "TRIA FAHRI SAHPUTRA", status: "LULUS" },
+        "0109579206": { nama: "WILDAN DZUBYAN PRATAMA", status: "LULUS" },
+        "0101521758": { nama: "XENANAVISA", status: "LULUS" },
+        "0104225031": { nama: "ZASKIA BENEAMATA GIVANI MULYA", status: "LULUS" },
+        "0101789998": { nama: "A'AISY SALAM AL KAUTSAR", status: "LULUS" },
+        "0102676739": { nama: "AFINDA DYAH VITALOKA", status: "LULUS" },
+        "0104613176": { nama: "ALTHAF RIZKY SAPUTRA", status: "LULUS" },
+        "0107406076": { nama: "AMANDA VALENCIA", status: "LULUS" },
+        "0108926461": { nama: "ANTASENA BIMA SENTA ISMAIL", status: "LULUS" },
+        "0103423766": { nama: "ARIYA BAGAS TIAN", status: "LULUS" },
+        "0117815279": { nama: "ARVAEL IBNU RAYHAN", status: "LULUS" },
+        "0105434986": { nama: "AZZAHRA RIAISHA RAHMAH", status: "LULUS" },
+        "0107154825": { nama: "CINTA WAHYUDINA PUTRI", status: "LULUS" },
+        "0106898097": { nama: "DEVA SUCI ANJANI", status: "LULUS" },
+        "0107506333": { nama: "FAISAL IBRAHIM", status: "LULUS" },
+        "0109340275": { nama: "GHIRA DHENANTA", status: "LULUS" },
+        "3105131337": { nama: "HAFIFAH NUR FAJRIANA", status: "LULUS" },
+        "0101197056": { nama: "ICHA AMELIA", status: "LULUS" },
+        "0115990866": { nama: "IRFIZUHDI IKHLASUL AMAL", status: "LULUS" },
+        "0108064630": { nama: "JIHAN NAZWA ALFAIRA", status: "LULUS" },
+        "0104669097": { nama: "KEYLA INTANIA RAMADHANI", status: "LULUS" },
+        "0102750920": { nama: "LINGGA HAZIM HAMIDUDIN", status: "LULUS" },
+        "0092077118": { nama: "MOHAMMAD DHAFA EZA SETIAWAN", status: "LULUS" },
+        "0109141459": { nama: "MUSLIH KHAFFA RAMADHAN", status: "LULUS" },
+        "0108901592": { nama: "NIZHAM RAMADHAN", status: "LULUS" },
+        "0105830495": { nama: "OKKY WASIS SUGIARTO", status: "LULUS" },
+        "0103097272": { nama: "PUTRA DWI KRISHNA", status: "LULUS" },
+        "0107972783": { nama: "RADITYA FALSYAH", status: "LULUS" },
+        "0105818668": { nama: "RAFA DWI RIANSYAH", status: "LULUS" },
+        "0105001499": { nama: "RAFIF BAHYA PRATAMA", status: "LULUS" },
+        "0105189695": { nama: "RAYA STIA ABDI NEGARA", status: "LULUS" },
+        "0118461181": { nama: "RESTIANA LESTARI", status: "LULUS" },
+        "0102799708": { nama: "RIZCKY RAMADHAN", status: "LULUS" },
+        "0108013945": { nama: "SAKINAH DIFA", status: "LULUS" },
+        "0102019596": { nama: "SCHATZI AULIA KIRANI", status: "LULUS" },
+        "0106621049": { nama: "SITI AISYAH ALIFAH", status: "LULUS" },
+        "0106106951": { nama: "SYAFA AL ZENA", status: "LULUS" },
+        "0113136205": { nama: "YASMIN AMIRA NAIFA", status: "LULUS" },
+        "0109661861": { nama: "ZEE ZEE USY SAPARAH", status: "LULUS" },
+        "0107610471": { nama: "ACHMAD SUGENG RIYADI", status: "LULUS" },
+        "0094666444": { nama: "ADE FADILLA", status: "LULUS" },
+        "0103091406": { nama: "AFIFAH SYAHIRAH", status: "LULUS" },
+        "0108374870": { nama: "AHMAD KHADAFI", status: "LULUS" },
+        "0103439612": { nama: "ALAMANDA AULIA SOLIHIN", status: "LULUS" },
+        "0106527869": { nama: "ALIF ALFIANSYAH", status: "LULUS" },
+        "0105882232": { nama: "ALZIRA KIRANA", status: "LULUS" },
+        "0102945222": { nama: "AMIRA RAMADANI", status: "LULUS" },
+        "0113515933": { nama: "ANINDYA NURUL KAMALA ZAHIRAH", status: "LULUS" },
+        "0115988488": { nama: "AQILLAH KADIMAH", status: "LULUS" },
+        "0106906672": { nama: "ARYA SAPUTRA", status: "LULUS" },
+        "0119557634": { nama: "AZHAR SETIAWAN WAHYU", status: "LULUS" },
+        "0103394128": { nama: "EGA EMILY PUTRA", status: "LULUS" },
+        "0101475961": { nama: "FAHAD ZULFA ISAKA", status: "LULUS" },
+        "0107250687": { nama: "FEBRIANINGSIH", status: "LULUS" },
+        "0102578925": { nama: "INDYRA FILZAH ANDIEANI", status: "LULUS" },
+        "0106452934": { nama: "MIKO DWI PUTRA", status: "LULUS" },
+        "0108152792": { nama: "MOHAMAD DWI RAGIL", status: "LULUS" },
+        "0104301648": { nama: "MU'AFINATUL AFLAH", status: "LULUS" },
+        "0107016271": { nama: "MUHAMAD AGUNG SYAHPUTRA", status: "LULUS" },
+        "0109585086": { nama: "MUHAMAD AZRIL ZULFIKAR", status: "LULUS" },
+        "0106844797": { nama: "MUHAMMAD HILMI FEBRYANSYAH", status: "LULUS" },
+        "0103005179": { nama: "NASYWA CAHYONO PUTRI", status: "LULUS" },
+        "0102506832": { nama: "OTTO BAYU RAFFAEL", status: "LULUS" },
+        "0109334425": { nama: "RAMA WAHYU DARMAWANTO", status: "LULUS" },
+        "0108249687": { nama: "REIVAN CAHAYA DIPUTRA", status: "LULUS" },
+        "0101531399": { nama: "RIFDAH SALSABILAH", status: "LULUS" },
+        "0103632001": { nama: "RIZKA RAMADHANI", status: "LULUS" },
+        "0106933222": { nama: "SAFINA YASMIN", status: "LULUS" },
+        "0104498030": { nama: "SALMAN AL FARISI", status: "LULUS" },
+        "0108319826": { nama: "SALWA AZAHRA", status: "LULUS" },
+        "3112261046": { nama: "TEUKU MUHAMMAD MALIKI", status: "LULUS" },
+        "0101227456": { nama: "TITIAN WULAN OKTAFIANI", status: "LULUS" },
+        "0106494473": { nama: "VANESA ASTIA WIDODO", status: "LULUS" },
+        "0102129005": { nama: "VIRGINIA NIBRAS PARAMITHA", status: "LULUS" }
+    };
+
+    // 3. LOGIKA COUNTDOWN TIMER
+    const hitungMundur = setInterval(function() {
+        const sekarang = new Date().getTime();
+        const selisih = waktuBuka - sekarang;
+
+        const hari = Math.floor(selisih / (1000 * 60 * 60 * 24));
+        const jam = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const menit = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
+        const detik = Math.floor((selisih % (1000 * 60)) / 1000);
+
+        document.getElementById("hari").innerText = hari < 10 ? "0" + hari : hari;
+        document.getElementById("jam").innerText = jam < 10 ? "0" + jam : jam;
+        document.getElementById("menit").innerText = menit < 10 ? "0" + menit : menit;
+        document.getElementById("detik").innerText = detik < 10 ? "0" + detik : detik;
+
+        if (selisih < 0) {
+            clearInterval(hitungMundur);
+            document.getElementById("countdown-section").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+            document.getElementById("page-subtitle").innerText = "Aplikasi Cek Kelulusan Mandiri";
+        }
+    }, 1000);
+
+    // 4. LOGIKA PENCARIAN STATUS DATA SISWA
+    function cekKelulusan() {
+        const input = document.getElementById("nisnInput").value.trim();
+        const resultBox = document.getElementById("result");
+
+        if (input === "") {
+            alert("Silakan masukkan Nomor NISN terlebih dahulu!");
+            return;
+        }
+
+        if (dataSiswa[input]) {
+            const siswa = dataSiswa[input];
+            resultBox.className = "result-box lulus";
+            resultBox.innerHTML = `<h3>Selamat! 🎉</h3><p>Peserta didik atas nama <b>${siswa.nama}</b> dinyatakan <b>LULUS</b> dari SMPN 185 Jakarta.</p>`;
+        } else {
+            resultBox.className = "result-box not-found";
+            resultBox.innerHTML = `<h3>Data Tidak Ditemukan ⚠️</h3><p>Nomor NISN <b>${input}</b> tidak terdaftar di sistem kelulusan atau data belum diunggah.</p>`;
+        }
+        resultBox.style.display = "block";
+    }
+
+    // 5. FITUR DARK / LIGHT THEME TOGGLE
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+            document.documentElement.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
+        }
+    }
+
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    if (savedTheme === "dark" || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+    } else {
+        document.documentElement.setAttribute("data-theme", "light");
+    }
+</script>
+
+</body>
+</html>
